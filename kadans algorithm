@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int maxSubArraySum(vector<int> &arr) {
+    int maxEndingHere = arr[0];
+    int maxSoFar = arr[0];
+
+    for (int i = 1; i < arr.size(); i++) {
+        // At each index, we have two choices:
+        // 1. Start a new subarray from the current element.
+        // 2. Extend the existing subarray with the current element.
+        // We choose the maximum of these two options.
+        maxEndingHere = max(arr[i], maxEndingHere + arr[i]);
+
+        // Update the maximum subarray sum encountered so far.
+        maxSoFar = max(maxSoFar, maxEndingHere);
+    }
+
+    return maxSoFar;
+}
+
